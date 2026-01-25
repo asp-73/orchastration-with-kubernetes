@@ -1,0 +1,16 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: metrics-server
+        args:
+        - --cert-dir=/tmp
+        - --secure-port=10250
+        # Add the following arguments to resolve common connectivity issues in kind/bare-metal clusters:
+        - --kubelet-insecure-tls=true
+        - --kubelet-preferred-address-types=InternalIP,Hostname
+        # Optional: adjust resource requests if needed
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi

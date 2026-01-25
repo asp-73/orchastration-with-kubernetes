@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-pod-nginx
+  labels:
+    app: demo
+    type: static
+spec:
+  containers:
+  - name: web
+    image: nginx:latest
+    
