@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deployment-configmap
+data:
+  database: httpd
+  database_uri: http://localhost

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd-vol
+spec:
+  containers:
+  - name: httpd
+    image: docker.io/httpd
+    volumeMounts:
+    - name: httpd-volume
+      mountPath: /data
+  volumes:
+  - name: httpd-volume
+    hostPath:
+      path: /tmp/data

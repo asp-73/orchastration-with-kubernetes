@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myhttpd
+  labels:
+    app: myhttpd
+  creationTimestamp: null
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myhttpd
+  template:
+    metadata:
+      labels:
+        app: myhttpd
+    spec:
+      containers:
+      - name: myhttpd
+        image: docker.io/httpd
+        volumeMounts:
+        - name: config-volume
+          mountPath: /tmp/myenvs/
+      volumes:
+      - name: config-volume
+        configMap:
+          name: deployment-configmap
+      restartPolicy: Always
+status: {}

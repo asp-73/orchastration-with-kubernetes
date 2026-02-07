@@ -1,0 +1,27 @@
+Execute on Node 1 -
+sudo mkdir /mydbdata
+ls
+cd /mydbdata/
+sudo apt nfs-kernel-server
+sudo apt install nfs-kernel-server
+//edit the below file 
+sudo nano /etc/exports
+put this at the end of the file - /mydbdata *(rw,sync,no_root_squash)
+sudo cat /etc/exports 
+sudo exportfs -rv
+sudo chown nobody:nogroup /mydbdata/
+sudo chmod 777 /mydbdata/
+sudo systemctl restart nfs-kernel-server
+ip a //note the 2nd section starts with - 2: ens5: - note the inet ip 
+sudo apt install nfs-common
+sudo rm /lib/systemd/system/nfs-common.service
+sudo systemctl daemon-reload
+sudo systemctl restart nfs-common
+sudo systemctl status nfs-common
+--------------------------------------------------
+Execute on Node 2 -
+sudo apt install nfs-common
+sudo rm /lib/systemd/system/nfs-common.service
+sudo systemctl daemon-reload
+sudo systemctl restart nfs-common
+sudo systemctl status nfs-common
